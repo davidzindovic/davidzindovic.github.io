@@ -3,50 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Creative Tech & Robotics Lab</title>
-  <!-- Google Font: JetBrains Mono za kodo/robotics tehnični videz in Inter za berljivost -->
+  <title>David Zindovič — Portfolio</title>
+  <!-- Google Fonts: Inter za čisto tipografijo + Space Mono za industrijske detajle -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   
   <style>
     :root {
-      --bg: #0b0f19;
-      --card-bg: #111827;
-      --card-border: #1f293d;
-      --text: #f3f4f6;
-      --text-muted: #9ca3af;
-      
-      /* Tech & Robotics Akcenti */
-      --neon-cyan: #00f0ff;
-      --neon-purple: #a855f7;
-      --neon-green: #10b981;
-      --grid-line: rgba(0, 240, 255, 0.04);
+      --bg: #fbfbfb;
+      --surface: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --accent: #2563eb; /* Čista industrijsko modra */
+      --accent-soft: #eff6ff;
+      --mono-font: 'Space Mono', monospace;
+      --sans-font: 'Inter', -apple-system, sans-serif;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    
+
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: var(--sans-font);
       background-color: var(--bg);
       color: var(--text);
       line-height: 1.6;
-      /* Subtilna mrežna podlaga (blueprint / circuit board feeling) */
-      background-image: 
-        linear-gradient(var(--grid-line) 1px, transparent 1px),
-        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-      background-size: 30px 30px;
-      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* HEADER / NAVIGACIJA */
+    /* HEADER & NAVIGACIJA */
     header {
-      background: rgba(17, 24, 39, 0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--card-border);
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
       position: sticky;
       top: 0;
-      z-index: 10;
+      z-index: 50;
     }
 
     .nav-container {
@@ -55,161 +47,208 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem 2rem;
+      padding: 1.25rem 2rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .status-badge {
+      font-family: var(--mono-font);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      background: var(--accent-soft);
+      color: var(--accent);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      border: 1px solid rgba(37, 99, 235, 0.2);
     }
 
     .logo {
-      font-family: 'JetBrains Mono', monospace;
       font-weight: 700;
-      font-size: 1.2rem;
-      color: var(--neon-cyan);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
+      font-size: 1.1rem;
+      letter-spacing: -0.02em;
+      color: var(--text);
     }
 
-    .logo-dot {
-      width: 10px;
-      height: 10px;
-      background: var(--neon-cyan);
-      border-radius: 50%;
-      box-shadow: 0 0 10px var(--neon-cyan);
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.8); }
-    }
-
-    nav ul { display: flex; list-style: none; gap: 1.5rem; }
+    nav ul { display: flex; list-style: none; gap: 0.5rem; }
+    
     nav a {
-      font-family: 'JetBrains Mono', monospace;
+      font-family: var(--sans-font);
       font-size: 0.9rem;
+      font-weight: 500;
       text-decoration: none;
       color: var(--text-muted);
       cursor: pointer;
-      transition: all 0.2s ease;
-      padding: 0.3rem 0.6rem;
-      border-radius: 4px;
+      padding: 0.5rem 0.8rem;
+      border-radius: 6px;
+      transition: all 0.15s ease;
     }
 
-    nav a.active, nav a:hover {
-      color: var(--neon-cyan);
-      background: rgba(0, 240, 255, 0.1);
-      box-shadow: 0 0 8px rgba(0, 240, 255, 0.2);
+    nav a:hover {
+      color: var(--text);
+      background: #f1f5f9;
     }
 
-    /* MAIN SECTION */
-    main { max-width: 1100px; margin: 2.5rem auto; padding: 0 2rem; }
+    nav a.active {
+      color: var(--text);
+      background: #f1f5f9;
+      font-weight: 600;
+    }
+
+    /* LAYOUT */
+    main { max-width: 1100px; margin: 3rem auto; padding: 0 2rem; }
     .section { display: none; }
     .section.active { display: block; }
 
-    h2 {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 1.8rem;
-      margin-bottom: 1.5rem;
+    .section-header {
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1rem;
       display: flex;
-      align-items: center;
-      gap: 0.5rem;
+      justify-content: space-between;
+      align-items: flex-end;
     }
-    h2::before {
-      content: '//';
-      color: var(--neon-purple);
+
+    h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .section-code {
+      font-family: var(--mono-font);
+      font-size: 0.8rem;
+      color: var(--text-muted);
     }
 
     /* O MENI CARD */
     .about-card {
-      background: var(--card-bg);
-      padding: 2.5rem;
-      border-radius: 12px;
-      border: 1px solid var(--card-border);
-      position: relative;
-      overflow: hidden;
-    }
-    .about-card::top {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; width: 100%; height: 3px;
-      background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 3rem;
     }
 
-    /* FILTRI IN PODKATEGORIJE */
-    .controls { display: flex; gap: 0.8rem; margin-bottom: 2rem; flex-wrap: wrap; }
-    .filter-btn {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
+    .about-hero {
+      font-size: 1.35rem;
+      font-weight: 500;
+      line-height: 1.5;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+
+    .about-body {
       color: var(--text-muted);
-      font-family: 'JetBrains Mono', monospace;
-      padding: 0.5rem 1.2rem;
+      font-size: 1rem;
+      max-width: 800px;
+    }
+
+    /* PODKATEGORIJE & FILTRI */
+    .controls { display: flex; gap: 0.5rem; margin-bottom: 2rem; flex-wrap: wrap; }
+    
+    .filter-btn {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-family: var(--sans-font);
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 0.4rem 1rem;
       border-radius: 6px;
       cursor: pointer;
-      font-size: 0.85rem;
-      transition: all 0.2s ease;
+      transition: all 0.15s ease;
     }
+
     .filter-btn:hover {
-      border-color: var(--neon-cyan);
+      border-color: #cbd5e1;
       color: var(--text);
     }
+
     .filter-btn.active {
-      background: var(--neon-cyan);
-      color: #000;
-      font-weight: 700;
-      border-color: var(--neon-cyan);
-      box-shadow: 0 0 12px rgba(0, 240, 255, 0.4);
+      background: var(--text);
+      color: var(--surface);
+      border-color: var(--text);
     }
 
     /* GRID & KARTICE */
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
-    
+    .grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
+      gap: 1.5rem; 
+    }
+
     .card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 10px;
-      padding: 1.5rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.75rem;
       cursor: pointer;
-      position: relative;
-      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.2s ease;
     }
 
     .card:hover {
-      transform: translateY(-5px);
-      border-color: var(--neon-purple);
-      box-shadow: 0 8px 25px rgba(168, 85, 247, 0.15);
+      border-color: #94a3b8;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+      transform: translateY(-2px);
     }
 
-    .card-meta {
+    .card-top {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.8rem;
-      margin-bottom: 0.8rem;
+      margin-bottom: 1rem;
     }
 
     .card-badge {
-      background: rgba(168, 85, 247, 0.15);
-      color: var(--neon-purple);
-      border: 1px solid rgba(168, 85, 247, 0.3);
-      padding: 0.2rem 0.6rem;
+      font-family: var(--mono-font);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      background: #f1f5f9;
+      color: var(--text);
+      padding: 0.2rem 0.5rem;
       border-radius: 4px;
-      font-weight: 600;
+      font-weight: 700;
     }
 
     .card-year {
-      color: var(--neon-cyan);
+      font-family: var(--mono-font);
+      font-size: 0.8rem;
+      color: var(--text-muted);
     }
 
     .card-title {
-      font-size: 1.2rem;
-      font-weight: 700;
-      margin-bottom: 0.6rem;
+      font-size: 1.15rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.5rem;
       color: var(--text);
     }
 
     .card-snippet {
       color: var(--text-muted);
       font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    .card-footer {
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+      border-top: 1px dashed var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--accent);
     }
 
     /* MODAL / POJAVNO OKNO */
@@ -217,84 +256,86 @@
       display: none;
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(5, 8, 15, 0.85);
-      backdrop-filter: blur(8px);
+      background: rgba(15, 23, 42, 0.4);
+      backdrop-filter: blur(4px);
       z-index: 100;
       justify-content: center;
       align-items: center;
     }
+
     .modal-overlay.active { display: flex; }
 
     .modal {
-      background: var(--card-bg);
-      border: 1px solid var(--neon-cyan);
-      box-shadow: 0 0 30px rgba(0, 240, 255, 0.2);
-      max-width: 650px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+      max-width: 680px;
       width: 90%;
       max-height: 85vh;
       border-radius: 12px;
       overflow-y: auto;
-      padding: 2rem;
+      padding: 2.5rem;
       position: relative;
     }
 
     .close-btn {
       position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--card-border);
+      top: 1.25rem; right: 1.25rem;
+      background: #f1f5f9;
+      border: none;
       color: var(--text-muted);
-      width: 32px;
-      height: 32px;
+      width: 32px; height: 32px;
       border-radius: 50%;
       font-size: 1rem;
       cursor: pointer;
-      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s;
     }
-    .close-btn:hover { color: var(--neon-cyan); border-color: var(--neon-cyan); }
+
+    .close-btn:hover { color: var(--text); background: #e2e8f0; }
 
     .modal-img {
       width: 100%;
-      border-radius: 8px;
-      margin: 1.2rem 0;
-      border: 1px solid var(--card-border);
+      border-radius: 6px;
+      margin: 1.25rem 0;
+      border: 1px solid var(--border);
     }
 
     .btn-pdf {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      background: var(--neon-cyan);
-      color: #000;
-      font-family: 'JetBrains Mono', monospace;
-      padding: 0.7rem 1.4rem;
+      background: var(--text);
+      color: var(--surface);
+      font-family: var(--sans-font);
+      font-size: 0.88rem;
+      font-weight: 500;
+      padding: 0.65rem 1.25rem;
       border-radius: 6px;
       text-decoration: none;
       margin-top: 1.5rem;
-      font-weight: 700;
-      transition: all 0.2s;
+      transition: background 0.15s;
     }
-    .btn-pdf:hover {
-      box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
-      transform: scale(1.02);
-    }
+
+    .btn-pdf:hover { background: #334155; }
   </style>
 </head>
 <body>
 
   <header>
     <div class="nav-container">
-      <div class="logo">
-        <div class="logo-dot"></div>
-        <span>DEV_PORTFOLIO.SYS</span>
+      <div class="brand">
+        <span class="logo">David Zindovič</span>
+        <span class="status-badge">Portfolio</span>
       </div>
       <nav>
         <ul>
-          <li><a onclick="showSection('o-meni', this)" class="active">&lt;O meni&gt;</a></li>
-          <li><a onclick="showSection('projekti', this)">&lt;Projekti&gt;</a></li>
-          <li><a onclick="showSection('publikacije', this)">&lt;Publikacije&gt;</a></li>
-          <li><a onclick="showSection('v-medijih', this)">&lt;V medijih&gt;</a></li>
+          <li><a onclick="showSection('o-meni', this)" class="active">O meni</a></li>
+          <li><a onclick="showSection('projekti', this)">Projekti</a></li>
+          <li><a onclick="showSection('publikacije', this)">Publikacije</a></li>
+          <li><a onclick="showSection('v-medijih', this)">V medijih</a></li>
         </ul>
       </nav>
     </div>
@@ -303,34 +344,43 @@
   <main>
     <!-- SEKCIJA: O MENI -->
     <section id="o-meni" class="section active">
+      <div class="section-header">
+        <h2>O meni</h2>
+        <span class="section-code">SYS_ABOUT</span>
+      </div>
       <div class="about-card">
-        <h2 style="margin-bottom: 1rem;">Sistem Inženir &amp; Raziskovalec</h2>
-        <p style="margin-top: 1rem; color: var(--text-muted);">
-          Pozdravljeni v mojem ustvarjalno-tehnološkem laboratoriju! Ukvarjam se z razvojem <strong>robotskih sistemov</strong>, <strong>vgrajene elektronike (embedded systems)</strong>, računalniškega vida in avtomatizacije.
+        <p class="about-hero">
+          Inženir in raziskovalec na področju robotike, računalniškega vida in vgrajenih sistemov.
         </p>
-        <p style="margin-top: 0.8rem; color: var(--text-muted);">
-          Tukaj si lahko ogledate moje projekte, raziskovalne objave, konferenčne prispevke ter medijske objave z možnostjo vpogleda v podrobne opise, slikovna gradiva ter PDF dokumente.
+        <p class="about-body">
+          Moje delo združuje avtomatizacijo z naprednimi algoritmi zaznavanja ter krmiljenja v realnem času. Specializiran sem za razvoj mehatronskih rešitev, vgrajene programske opreme (STM32, ESP32) ter integracijo senzorjev in robotskih manipulatorjev.
         </p>
       </div>
     </section>
 
     <!-- SEKCIJA: PROJEKTI -->
     <section id="projekti" class="section">
-      <h2>Projekti</h2>
+      <div class="section-header">
+        <h2>Projekti</h2>
+        <span class="section-code">PRJ_LIST</span>
+      </div>
       <div class="controls">
-        <button class="filter-btn active" onclick="filterItems('projekti', 'vse', this)">[ Vse ]</button>
+        <button class="filter-btn active" onclick="filterItems('projekti', 'vse', this)">Vse</button>
         <button class="filter-btn" onclick="filterItems('projekti', 'Robotika', this)">Robotika</button>
         <button class="filter-btn" onclick="filterItems('projekti', 'Embedded', this)">Embedded</button>
-        <button class="filter-btn" onclick="filterItems('projekti', 'Programiranje', this)">Programiranje</button>
+        <button class="filter-btn" onclick="filterItems('projekti', 'Računalniški vid', this)">Računalniški vid</button>
       </div>
       <div class="grid" id="grid-projekti"></div>
     </section>
 
     <!-- SEKCIJA: PUBLIKACIJE -->
     <section id="publikacije" class="section">
-      <h2>Publikacije</h2>
+      <div class="section-header">
+        <h2>Publikacije</h2>
+        <span class="section-code">PUB_DOCS</span>
+      </div>
       <div class="controls">
-        <button class="filter-btn active" onclick="filterItems('publikacije', 'vse', this)">[ Vse ]</button>
+        <button class="filter-btn active" onclick="filterItems('publikacije', 'vse', this)">Vse</button>
         <button class="filter-btn" onclick="filterItems('publikacije', 'Konference', this)">Konference</button>
         <button class="filter-btn" onclick="filterItems('publikacije', 'Članki', this)">Članki</button>
       </div>
@@ -339,9 +389,12 @@
 
     <!-- SEKCIJA: V MEDIJIH -->
     <section id="v-medijih" class="section">
-      <h2>V medijih</h2>
+      <div class="section-header">
+        <h2>V medijih</h2>
+        <span class="section-code">MEDIA_LOG</span>
+      </div>
       <div class="controls">
-        <button class="filter-btn active" onclick="filterItems('v-medijih', 'vse', this)">[ Vse ]</button>
+        <button class="filter-btn active" onclick="filterItems('v-medijih', 'vse', this)">Vse</button>
         <button class="filter-btn" onclick="filterItems('v-medijih', 'Intervjuji', this)">Intervjuji</button>
         <button class="filter-btn" onclick="filterItems('v-medijih', 'Novice', this)">Novice</button>
       </div>
@@ -358,18 +411,18 @@
   </div>
 
   <script>
-    // PODATKI (Poljubno dopolnjuj in spreminjaj)
+    // PODATKI
     const itemsData = [
       {
         id: 1,
         section: 'projekti',
         category: 'Robotika',
         year: 2026,
-        title: 'SpikBot: Avtonomni robotski sistem',
-        snippet: '3-osni manipulator z optično prepoznavo in avtonomnim pozicioniranjem.',
-        description: 'V okviru tega projekta smo razvili mobilno robotsko platformo z zankami krmiljenja v realnem času, integriranimi koračnimi pogoni ter sistemom računalniškega vida za natančno detekcijo objektov v prostoru.',
-        image: 'https://via.placeholder.com/600x320/111827/00f0ff?text=SpikBot+Robotics+System',
-        pdf: 'porocilo_spikbot.pdf'
+        title: 'SpikBot: Avtonomni injekcijski sistem',
+        snippet: 'Avtonomna robotična celica z 3-osnim manipulatorjem in zaznavanjem okolice.',
+        description: 'Celoten mehatronski sistem vključuje koračne pogone StepperOnline, STM32 krmilnik ter Intel RealSense kamero za natančno 3D detekcijo in avtonomno pozicioniranje v naravnem okolju.',
+        image: 'https://via.placeholder.com/600x320/f1f5f9/0f172a?text=SpikBot+Robotics+System',
+        pdf: 'spikbot_porocilo.pdf'
       },
       {
         id: 2,
@@ -377,31 +430,42 @@
         category: 'Embedded',
         year: 2026,
         title: 'STM32 / ESP32 Senzorska vozlišča',
-        snippet: 'Modul za merjenje razdalje in pritiska z I2C / UART komunikacijo.',
-        description: 'Razvoj vgrajene programske opreme (firmware) za mikrokrmilnike z nizko porabo energije ter neposrednim zajemom senzorskih podatkov.',
+        snippet: 'Senzorska integracija preko I2C in UART protokola.',
+        description: 'Razvoj namenske vgrajene programske opreme za branje laserskih senzorjev razdalje (Pololu VL53L0X) ter komunikacijo z industrijskimi krmilniki.',
         image: '',
         pdf: ''
       },
       {
         id: 3,
-        section: 'publikacije',
-        category: 'Konference',
-        year: 2026,
-        title: 'Robotsko podprta endoterapija dreves',
-        snippet: 'Strokovni prispevek predstavljen na mednarodni konferenci ERK 2026.',
-        description: 'Članek obravnava načrtovanje in izdelavo robotskega mehanizma za avtomatizirano endoterapijo dreves.',
+        section: 'projekti',
+        category: 'Računalniški vid',
+        year: 2025,
+        title: '3D segmentacija objektov s SAM3 / YOLO',
+        snippet: 'Detekcija in prostorska poravnava oblakov točk v realnem času.',
+        description: 'Algoritem za obdelavo podatkov iz globinske kamere Intel RealSense (D435i/D455), ki omogoča samodejno detekcijo ter izračun prostorskih koordinat objektov.',
         image: '',
-        pdf: './Assets/Robotska_endoterapija_ERK2026'
+        pdf: ''
       },
       {
         id: 4,
+        section: 'publikacije',
+        category: 'Konference',
+        year: 2026,
+        title: 'MIDEM 2026: Prostorska analitika v robotiki',
+        snippet: 'Prispevek o uporabi naprednih vizijskih sistemov v avtomatizaciji.',
+        description: 'Članek obravnava praktično izvedbo algoritemskega vodenja mehatronskega sistema s pomočjo računalniškega vida in senzorjev pritiska.',
+        image: '',
+        pdf: 'midem_2026_clanek.pdf'
+      },
+      {
+        id: 5,
         section: 'v-medijih',
         category: 'Intervjuji',
-        year: 2025,
-        title: 'Tehnologija in robotika v izobraževanju',
-        snippet: 'Predstavitev dosežkov na tekmovanjih in mentorstva mladih raziskovalcev.',
-        description: 'Pogovor o pomenu praktičnih robotičnih projektov, mednarodnih tekmovanjih FIRST ter razvoju tehnične ustvarjalnosti.',
-        image: 'https://via.placeholder.com/600x320/111827/a855f7?text=Media+Interview',
+        year: 2026,
+        title: 'Dosežki na mednarodnih tekmovanjih FIRST Global',
+        snippet: 'Predstavitev mentorskega dela z mladimi v robotiki.',
+        description: 'Pregled tekmovalnih dosežkov in nagrad Helping Hands ter uvrstitev na tekmovanju FIRST Tech Challenge.',
+        image: '',
         pdf: ''
       }
     ];
@@ -433,12 +497,17 @@
         card.className = 'card';
         card.onclick = () => openModal(item);
         card.innerHTML = `
-          <div class="card-meta">
-            <span class="card-badge">${item.category}</span>
-            <span class="card-year">[${item.year}]</span>
+          <div>
+            <div class="card-top">
+              <span class="card-badge">${item.category}</span>
+              <span class="card-year">${item.year}</span>
+            </div>
+            <h3 class="card-title">${item.title}</h3>
+            <p class="card-snippet">${item.snippet}</p>
           </div>
-          <h3 class="card-title">${item.title}</h3>
-          <p class="card-snippet">${item.snippet}</p>
+          <div class="card-footer">
+            Prikaži podrobnosti ➔
+          </div>
         `;
         container.appendChild(card);
       });
@@ -454,14 +523,14 @@
     function openModal(item) {
       const content = document.getElementById('modal-content');
       content.innerHTML = `
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 0.5rem;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 1rem;">
           <span class="card-badge">${item.category}</span>
-          <span style="font-family:'JetBrains Mono'; color: var(--neon-cyan);">Leto: ${item.year}</span>
+          <span style="font-family: var(--mono-font); font-size: 0.85rem; color: var(--text-muted);">${item.year}</span>
         </div>
-        <h2 style="font-size: 1.4rem; margin: 0.8rem 0;">${item.title}</h2>
-        ${item.image ? `<img src="${item.image}" class="modal-img" alt="Slika projeta">` : ''}
-        <p style="color: var(--text-muted); font-size: 0.98rem; margin-top: 1rem;">${item.description}</p>
-        ${item.pdf ? `<a href="${item.pdf}" target="_blank" class="btn-pdf"><span>📄</span> Prenesi / Odpri PDF</a>` : ''}
+        <h2 style="font-size: 1.5rem; letter-spacing: -0.02em; margin-bottom: 0.5rem;">${item.title}</h2>
+        ${item.image ? `<img src="${item.image}" class="modal-img" alt="Slika">` : ''}
+        <p style="color: var(--text-muted); font-size: 0.98rem; margin-top: 1rem; line-height: 1.6;">${item.description}</p>
+        ${item.pdf ? `<a href="${item.pdf}" target="_blank" class="btn-pdf">📄 Prenesi / Odpri PDF</a>` : ''}
       `;
       document.getElementById('modal-overlay').classList.add('active');
     }
