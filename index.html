@@ -11,15 +11,45 @@
   
   <style>
     :root {
-      --bg: #fbfbfb;
-      --surface: #ffffff;
-      --text: #0f172a;
-      --text-muted: #64748b;
-      --border: #e2e8f0;
-      --accent: #2563eb; /* Čista industrijsko modra */
-      --accent-soft: #eff6ff;
+      /* DEFAULT DARK MODE PALETA (Industrial Dark) */
+      --bg: #0b0f17;
+      --surface: #111827;
+      --surface-hover: #1f2937;
+      --text: #f3f4f6;
+      --text-muted: #9ca3af;
+      --border: #1f2937;
+      --border-accent: #374151;
+      
+      --accent: #3b82f6; /* Tehnično modra */
+      --accent-soft: rgba(59, 130, 246, 0.12);
+      
       --mono-font: 'Space Mono', monospace;
       --sans-font: 'Inter', -apple-system, sans-serif;
+
+      /* KATEGORIJSKE BARVE (Industrial Muted Accents) */
+      --cat-robotika-bg: rgba(245, 158, 11, 0.15); /* Amber / Inženirska */
+      --cat-robotika-text: #fbbf24;
+      --cat-robotika-border: rgba(245, 158, 11, 0.3);
+
+      --cat-embedded-bg: rgba(16, 185, 129, 0.15); /* Smaragdno zelena / PCB */
+      --cat-embedded-text: #34d399;
+      --cat-embedded-border: rgba(16, 185, 129, 0.3);
+
+      --cat-vid-bg: rgba(139, 92, 246, 0.15); /* Vijolična / AI Vision */
+      --cat-vid-text: #a78bfa;
+      --cat-vid-border: rgba(139, 92, 246, 0.3);
+
+      --cat-konference-bg: rgba(59, 130, 246, 0.15); /* Modra / Akademska */
+      --cat-konference-text: #60a5fa;
+      --cat-konference-border: rgba(59, 130, 246, 0.3);
+
+      --cat-mediji-bg: rgba(236, 72, 153, 0.15); /* Rožnata / Mediji */
+      --cat-mediji-text: #f472b6;
+      --cat-mediji-border: rgba(236, 72, 153, 0.3);
+
+      --cat-default-bg: rgba(156, 163, 175, 0.15);
+      --cat-default-text: #d1d5db;
+      --cat-default-border: rgba(156, 163, 175, 0.3);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -65,7 +95,7 @@
       color: var(--accent);
       padding: 0.2rem 0.5rem;
       border-radius: 4px;
-      border: 1px solid rgba(37, 99, 235, 0.2);
+      border: 1px solid rgba(59, 130, 246, 0.3);
     }
 
     .logo {
@@ -91,12 +121,12 @@
 
     nav a:hover {
       color: var(--text);
-      background: #f1f5f9;
+      background: var(--surface-hover);
     }
 
     nav a.active {
       color: var(--text);
-      background: #f1f5f9;
+      background: var(--surface-hover);
       font-weight: 600;
     }
 
@@ -166,13 +196,13 @@
     }
 
     .filter-btn:hover {
-      border-color: #cbd5e1;
+      border-color: var(--border-accent);
       color: var(--text);
     }
 
     .filter-btn.active {
       background: var(--text);
-      color: var(--surface);
+      color: var(--bg);
       border-color: var(--text);
     }
 
@@ -196,8 +226,8 @@
     }
 
     .card:hover {
-      border-color: #94a3b8;
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+      border-color: var(--border-accent);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
       transform: translateY(-2px);
     }
 
@@ -208,15 +238,52 @@
       margin-bottom: 1rem;
     }
 
+    /* BARVNE ZNAČKE GLEDE NA KATEGORIJO */
     .card-badge {
       font-family: var(--mono-font);
       font-size: 0.72rem;
       text-transform: uppercase;
-      background: #f1f5f9;
-      color: var(--text);
-      padding: 0.2rem 0.5rem;
+      padding: 0.25rem 0.6rem;
       border-radius: 4px;
       font-weight: 700;
+      border: 1px solid transparent;
+      letter-spacing: 0.02em;
+    }
+
+    .badge-robotika {
+      background: var(--cat-robotika-bg);
+      color: var(--cat-robotika-text);
+      border-color: var(--cat-robotika-border);
+    }
+
+    .badge-embedded {
+      background: var(--cat-embedded-bg);
+      color: var(--cat-embedded-text);
+      border-color: var(--cat-embedded-border);
+    }
+
+    .badge-racunalniski-vid {
+      background: var(--cat-vid-bg);
+      color: var(--cat-vid-text);
+      border-color: var(--cat-vid-border);
+    }
+
+    .badge-konference, .badge-clanki {
+      background: var(--cat-konference-bg);
+      color: var(--cat-konference-text);
+      border-color: var(--cat-konference-border);
+    }
+
+    .badge-intervjuji, .badge-novice {
+      background: var(--cat-mediji-bg);
+      color: var(--cat-mediji-text);
+      border-color: var(--cat-mediji-border);
+    }
+
+    .badge-default {
+      background: var(--cat-default-bg);
+      color: var(--cat-default-text);
+      border-color: var(--cat-default-border);
     }
 
     .card-year {
@@ -256,8 +323,8 @@
       display: none;
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(15, 23, 42, 0.4);
-      backdrop-filter: blur(4px);
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(6px);
       z-index: 100;
       justify-content: center;
       align-items: center;
@@ -267,8 +334,8 @@
 
     .modal {
       background: var(--surface);
-      border: 1px solid var(--border);
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+      border: 1px solid var(--border-accent);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
       max-width: 680px;
       width: 90%;
       max-height: 85vh;
@@ -278,23 +345,33 @@
       position: relative;
     }
 
+    /* PREMAKNJENA IN IZBOLJŠANA TIPKA ZA ZAPIRANJE */
     .close-btn {
       position: absolute;
-      top: 1.25rem; right: 1.25rem;
-      background: #f1f5f9;
-      border: none;
+      top: 1.5rem; right: 1.5rem;
+      background: var(--surface-hover);
+      border: 1px solid var(--border);
       color: var(--text-muted);
-      width: 32px; height: 32px;
+      width: 36px; height: 36px;
       border-radius: 50%;
-      font-size: 1rem;
+      font-size: 1.1rem;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       transition: all 0.15s;
+      z-index: 10;
     }
 
-    .close-btn:hover { color: var(--text); background: #e2e8f0; }
+    .close-btn:hover { color: var(--text); background: var(--border); }
+
+    .modal-header-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+      padding-right: 3rem; /* Prepreči prekrivanje z gumbom X */
+    }
 
     .modal-img {
       width: 100%;
@@ -307,8 +384,8 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      background: var(--text);
-      color: var(--surface);
+      background: var(--accent);
+      color: #ffffff;
       font-family: var(--sans-font);
       font-size: 0.88rem;
       font-weight: 500;
@@ -316,10 +393,10 @@
       border-radius: 6px;
       text-decoration: none;
       margin-top: 1.5rem;
-      transition: background 0.15s;
+      transition: opacity 0.15s;
     }
 
-    .btn-pdf:hover { background: #334155; }
+    .btn-pdf:hover { opacity: 0.9; }
   </style>
 </head>
 <body>
@@ -421,7 +498,7 @@
         title: 'SpikBot: Avtonomni injekcijski sistem',
         snippet: 'Avtonomna robotična celica z 3-osnim manipulatorjem in zaznavanjem okolice.',
         description: 'Celoten mehatronski sistem vključuje koračne pogone StepperOnline, STM32 krmilnik ter Intel RealSense kamero za natančno 3D detekcijo in avtonomno pozicioniranje v naravnem okolju.',
-        image: 'https://via.placeholder.com/600x320/f1f5f9/0f172a?text=SpikBot+Robotics+System',
+        image: 'https://via.placeholder.com/600x320/1f2937/f3f4f6?text=SpikBot+Robotics+System',
         pdf: 'spikbot_porocilo.pdf'
       },
       {
@@ -470,6 +547,19 @@
       }
     ];
 
+    function getBadgeClass(category) {
+      const catMap = {
+        'Robotika': 'badge-robotika',
+        'Embedded': 'badge-embedded',
+        'Računalniški vid': 'badge-racunalniski-vid',
+        'Konference': 'badge-konference',
+        'Članki': 'badge-clanki',
+        'Intervjuji': 'badge-intervjuji',
+        'Novice': 'badge-novice'
+      };
+      return catMap[category] || 'badge-default';
+    }
+
     function showSection(sectionId, element) {
       document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
       document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
@@ -493,13 +583,14 @@
       });
 
       filtered.forEach(item => {
+        const badgeClass = getBadgeClass(item.category);
         const card = document.createElement('div');
         card.className = 'card';
         card.onclick = () => openModal(item);
         card.innerHTML = `
           <div>
             <div class="card-top">
-              <span class="card-badge">${item.category}</span>
+              <span class="card-badge ${badgeClass}">${item.category}</span>
               <span class="card-year">${item.year}</span>
             </div>
             <h3 class="card-title">${item.title}</h3>
@@ -522,9 +613,11 @@
 
     function openModal(item) {
       const content = document.getElementById('modal-content');
+      const badgeClass = getBadgeClass(item.category);
+      
       content.innerHTML = `
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 1rem;">
-          <span class="card-badge">${item.category}</span>
+        <div class="modal-header-meta">
+          <span class="card-badge ${badgeClass}">${item.category}</span>
           <span style="font-family: var(--mono-font); font-size: 0.85rem; color: var(--text-muted);">${item.year}</span>
         </div>
         <h2 style="font-size: 1.5rem; letter-spacing: -0.02em; margin-bottom: 0.5rem;">${item.title}</h2>
